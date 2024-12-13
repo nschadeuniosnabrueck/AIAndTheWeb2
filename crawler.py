@@ -15,7 +15,7 @@ while agenda:
     #request: library to perform web requests (to get html file)
     r = requests.get(url)
     print(r, r.encoding)
-    if r.status_code == 200 and r.headers.get('Content-Type', '').lower() == 'text/html; charset=utf-8':
+    if r.status_code == 200 and r.headers.get('Content-Type', '').lower().startswith('text/html'):
         #headers returns meta information (browser etc.)
         print(r.headers)
         soup = BeautifulSoup(r.content, 'html.parser')
@@ -24,7 +24,7 @@ while agenda:
         print(all_links)
         only_same_page_links = []
         for link in all_links:
-            if not link['href'].startswith("http"):
+            if not link['href'].startswith("http") or link['href'].startswith(prefix):
                 only_same_page_links.append(link)
         print (soup.text)
         for link in only_same_page_links:
