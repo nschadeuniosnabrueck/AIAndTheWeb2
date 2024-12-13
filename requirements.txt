@@ -2,5 +2,3 @@ flask
 whoosh
 BeautifulSoup4
 requests
-
-###TO-DO
