@@ -6,14 +6,8 @@ webapp = Flask(__name__)
 @webapp.route("/")
 def landing_page():
     return """""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <title>Search Page</title>
-    </head>
-    <body>
-        <h1>Search Something</h1>
-        <input type="search" placeholder="Type here to search">
-    </body>
-    </html>
-    """
+        <form action="URL to send the information" method="GET or POST">
+            <input type="text" name="param">
+            <input type="submit">
+        </form>
+          """
