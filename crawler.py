@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from index import extract, add_doc
+
+from index import add_doc
 
 prefix = 'https://vm009.rz.uos.de/crawl/'
 
@@ -8,6 +9,17 @@ start_url = prefix + 'index.html'
 
 agenda = [start_url]
 already_seen = []
+
+
+def extract(bs: BeautifulSoup):
+    """
+    Used to extract text from a BeautifulSoup object
+    :param bs: BeautifulSoup object
+    :return: dict containing title and content
+    """
+    title = bs.title.string if bs.title else "No title"  # Falls kein Titel vorhanden
+    content = bs.get_text()
+    return {"title": title, "content": content}
 
 while agenda:
     url = agenda.pop()
