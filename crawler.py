@@ -34,7 +34,7 @@ while agenda:
         soup = BeautifulSoup(r.content, 'html.parser')
 
         # Extract data and content
-        data = extract(url, soup)
+        data = extract(soup)
         add_doc(data)
 
         # a: html element link
