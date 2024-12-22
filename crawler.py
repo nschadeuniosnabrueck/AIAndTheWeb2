@@ -11,7 +11,7 @@ agenda = [start_url]
 already_seen = []
 
 
-def extract(bs: BeautifulSoup):
+def extract(bs: BeautifulSoup, url: str):
     """
     Used to extract text from a BeautifulSoup object
     :param bs: BeautifulSoup object
@@ -19,7 +19,7 @@ def extract(bs: BeautifulSoup):
     """
     title = bs.title.string if bs.title else "No title"  # Falls kein Titel vorhanden
     content = bs.get_text()
-    return {"title": title, "content": content}
+    return {"title": title, "content": content, "url": url}
 
 while agenda:
     url = agenda.pop()
@@ -34,7 +34,7 @@ while agenda:
         soup = BeautifulSoup(r.content, 'html.parser')
 
         # Extract data and content
-        data = extract(soup)
+        data = extract(soup, url)
         add_doc(data)
 
         # a: html element link

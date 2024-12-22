@@ -4,25 +4,30 @@ from whoosh.qparser import QueryParser
 import os
 import whoosh.index as index
 
-# schema how the data will be stored in the index
-schema = Schema(title=TEXT(stored=True), content=TEXT)
+# schema how the data will be stored in the index, will only be played one time now
+# TODO also check if index exists, not just folder
 if not os.path.exists("indexdir"):
+    schema = Schema(title=TEXT(stored=True), content=TEXT, url=TEXT(stored=True))
     os.mkdir("indexdir")
-
-ix = index.create_in("indexdir", schema)
+    ix = index.create_in("indexdir", schema)
 
 def add_doc(data):
-    # Create an index in the directory indexdr (the directory must already exist!)
-    ix = index.open_dir("indexdir")
-    writer = ix.writer()
-    writer.add_document(title=data["title"], content=data["content"])
+    # Create an index in the directory indexdir (the directory must already exist!)
+    ind = index.open_dir("indexdir")
+    writer = ind.writer()
+    writer.add_document(title=data["title"], content=data["content"], url=data["url"])
     writer.commit()
 
 def search_word(words):
-    ix = index.open_dir("indexdir")
-    qp = QueryParser("content", schema=ix.schema)
-    q = qp.parse(words)
-    with ix.searcher() as searcher:
+    ind = index.open_dir("indexdir")
+    qp = QueryParser("content", schema=ind.schema)
+    q = qp.parse(words.encode("utf-8"))
+    urls = []
+    with ind.searcher() as searcher:
         res = searcher.search(q)
-        print(res)
+        # res contains Hits
+        print(res[0])
+        for hit in res:
+            urls.append(hit["url"])
+    return urls
 

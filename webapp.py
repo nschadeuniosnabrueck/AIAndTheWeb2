@@ -13,7 +13,8 @@ def landing_page():
 def search():
     srch = request.args.get("searchBox")
     res = search_word(srch)
-    return render_template("search.html", res=srch)
+    print(res[0])
+    return render_template("search.html", res=res)
 
 if __name__ == "__main__":
     webapp.run(debug=True)
