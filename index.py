@@ -9,7 +9,7 @@ import whoosh.index as index
 if not os.path.exists("indexdir"):
     schema = Schema(title=TEXT(stored=True), content=TEXT, url=TEXT(stored=True))
     os.mkdir("indexdir")
-    ix = index.create_in("indexdir", schema)
+    ix = index.create_in("indexdir", schema) #erstellt den index
 
 def add_doc(data):
     # Create an index in the directory indexdir (the directory must already exist!)
