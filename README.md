@@ -7,4 +7,3 @@ AI and the Web 2
 - koreanisch lernen (noah)
 - credits page (adrian)
 - links klickbar
-- 
