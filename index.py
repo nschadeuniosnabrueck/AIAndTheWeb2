@@ -26,7 +26,6 @@ def search_word(words):
     with ind.searcher() as searcher:
         res = searcher.search(q)
         # res contains Hits
-        print(res[0])
         for hit in res:
             urls.append(hit["url"])
     return urls

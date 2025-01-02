@@ -12,8 +12,9 @@ def landing_page():
 @webapp.route("/search")
 def search():
     srch = request.args.get("searchBox")
-    res = search_word(srch)
-    print(res[0])
+    res = []
+    if srch:
+        res = search_word(srch)
     return render_template("search.html", res=res)
 
 if __name__ == "__main__":
