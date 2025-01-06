@@ -14,7 +14,7 @@ if not os.path.exists("indexdir"):
 def add_doc(data):
     # Create an index in the directory indexdir (the directory must already exist!)
     ind = index.open_dir("indexdir")
-    with ix.searcher() as searcher:
+    with ind.searcher() as searcher:
         # Example 1: Iterating through all documents
         for doc in searcher.documents():
             if data["url"] == doc["url"]:
