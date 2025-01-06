@@ -22,6 +22,7 @@ if not os.path.exists("indexdir"):
     os.mkdir("indexdir")
     ix = index.create_in("indexdir", schema) #creates the index
 
+
 def add_doc(data):
     # Create an index in the directory indexdir (the directory must already exist!)
     ind = index.open_dir("indexdir")
@@ -33,6 +34,7 @@ def add_doc(data):
     writer = ind.writer()
     writer.add_document(title=data["title"], content=data["content"], url=data["url"])
     writer.commit()
+
 
 def search_word(words):
     ind = index.open_dir("indexdir")
