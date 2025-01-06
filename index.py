@@ -7,18 +7,11 @@ import whoosh.index as index
 from whoosh.fields import Schema, TEXT
 from whoosh.analysis import RegexTokenizer, LowercaseFilter
 
-# Custom analyzer that doesn't remove stop words
-custom_analyzer = RegexTokenizer() | LowercaseFilter()
-
-# Define schema with custom analyzer
-schema = Schema(
-    title=TEXT(stored=True, analyzer=custom_analyzer),
-    content=TEXT(stored=True, analyzer=custom_analyzer)
-)
-# schema how the data will be stored in the index, will only be played one time now
 # TODO also check if index exists, not just folder
 if not os.path.exists("indexdir"):
-    #schema = Schema(title=TEXT(stored=True), content=TEXT, url=TEXT(stored=True))
+    # Custom analyzer that doesn't remove stop words
+    custom_analyzer = RegexTokenizer() | LowercaseFilter()
+    schema = Schema(title=TEXT(stored=True, analyzer = custom_analyzer), content=TEXT(stored=True, analyzer=custom_analyzer), url=TEXT(stored=True))
     os.mkdir("indexdir")
     ix = index.create_in("indexdir", schema) #creates the index
 
