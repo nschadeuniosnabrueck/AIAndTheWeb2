@@ -4,6 +4,17 @@ from whoosh.qparser import QueryParser
 import os
 import whoosh.index as index
 
+from whoosh.fields import Schema, TEXT
+from whoosh.analysis import RegexTokenizer, LowercaseFilter
+
+# Custom analyzer that doesn't remove stop words
+custom_analyzer = RegexTokenizer() | LowercaseFilter()
+
+# Define schema with custom analyzer
+schema = Schema(
+    title=TEXT(stored=True, analyzer=custom_analyzer),
+    content=TEXT(stored=True, analyzer=custom_analyzer)
+)
 # schema how the data will be stored in the index, will only be played one time now
 # TODO also check if index exists, not just folder
 if not os.path.exists("indexdir"):
