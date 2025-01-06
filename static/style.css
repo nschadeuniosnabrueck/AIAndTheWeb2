@@ -1,10 +1,38 @@
+/* Displax Flex */
+
 body {
-    background-color: lightblue;
+    background-color: whitesmoke;
     font-family: Arial, sans-serif;
 }
 
 h1 {
-    color: darkblue;
-    text-align: center;
+  font-family: 'Courier', sans-serif; /* Schriftart */
+  font-weight: bold; /* Fett */
+  font-size: 36px; /* Schriftgröße */
+  color: #1a0dab; /* Farbe */
+  text-align: center; /* Zentrieren */
+  margin-bottom: 20px; /* Abstand nach unten */
+  text-transform: uppercase; /* Großbuchstaben */
 }
 
+a {
+  font-family: 'Arial', sans-serif; /* Schriftart */
+  font-weight: bold; /* Fett */
+  font-size: 20px; /* Größer */
+  color: #1a0dab; /* Link-Farbe */
+  text-decoration: none; /* Entfernt die Unterstreichung */
+  transition: color 0.3s ease; /* Sanfter Übergang der Farbe beim Hover */
+}
+
+iframe{
+   width: 200%; /* Breite auf 100% der Elternbreite setzen */
+  height: 250px; /* Festgelegte Höhe für das iframe */
+  border: none; /* Entfernt die Standard-Randlinien */
+  border-radius: 10px; /* Abgerundete Ecken */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten für einen 3D-Effekt */
+  background-color: #f0f0f0; /* Hintergrundfarbe */
+  overflow: hidden; /* Verhindert Scrollbars, falls sie nicht notwendig sind */
+  margin: 20px 0; /* Abstand oben und unten */
+  transition: transform 0.3s ease; /* Sanfte Übergangseffekte beim Hover */
+}
+}

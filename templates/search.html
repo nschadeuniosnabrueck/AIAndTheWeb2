@@ -7,16 +7,23 @@
 
 <body>
 <h1>Results</h1>
-<tbody>
-{% for element in res %}
-    <tr>
-        <td>{{ element["title"]}}</td>
-        </p>
+<table>
+    <tbody>
+        {% for element in res %}
+        <tr>
+            <td>
+                <a href="{{ element['url'] }}" target="_blank">
+                    {{ element["title"] }}
+                </a>
+                <br>
 
-    </tr>
-{% endfor %}
-</tbody>
-
+                <iframe src="{{ element['url'] }}"></iframe>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>
+
 
