@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 
 from index import add_doc
 
-prefix = 'https://docs.python.org/3/'
+prefix = 'https://vm009.rz.uos.de/crawl/'
 
-start_url = prefix + ''
+start_url = prefix + 'index.html'
 
 agenda = [start_url]
 already_seen = []

@@ -5,15 +5,17 @@ import os
 import whoosh.index as index
 
 from whoosh.fields import Schema, TEXT
-from whoosh.analysis import RegexTokenizer, LowercaseFilter, StopFilter
+from whoosh.analysis import RegexTokenizer, LowercaseFilter
 
 # TODO also check if index exists, not just folder
 if not os.path.exists("indexdir"):
     # Custom analyzer that doesn't remove stop words
-    custom_analyzer = StopFilter(stoplist=[])
-    schema = Schema(title=TEXT(stored=True, analyzer = custom_analyzer), content=TEXT(stored=True, analyzer=custom_analyzer), url=TEXT(stored=True))
+    custom_analyzer = RegexTokenizer() | LowercaseFilter()
+    schema = Schema(title=TEXT(stored=True, analyzer=custom_analyzer),
+                    content=TEXT(stored=True, analyzer=custom_analyzer),
+                    url=TEXT(stored=True))
     os.mkdir("indexdir")
-    ix = index.create_in("indexdir", schema) #creates the index
+    ix = index.create_in("indexdir", schema)  #creates the index
 
 
 def add_doc(data):
@@ -26,6 +28,7 @@ def add_doc(data):
                 return
     writer = ind.writer()
     writer.add_document(title=data["title"], content=data["content"], url=data["url"])
+    writer.add_document(title="hardcore", content="sex", url="pornhub.com/abrech")
     writer.commit()
 
 
@@ -33,11 +36,11 @@ def search_word(words):
     ind = index.open_dir("indexdir")
     qp = QueryParser("content", schema=ind.schema)
     q = qp.parse(words.encode("utf-8"))
-    urls = []
+    hit_list = []
     with ind.searcher() as searcher:
         res = searcher.search(q)
         # res contains Hits
         for hit in res:
-            urls.append(hit["url"])
-    return urls
-
+            print(hit)
+            hit_list.append({"title": hit["title"], "url": hit["url"]})
+    return hit_list
