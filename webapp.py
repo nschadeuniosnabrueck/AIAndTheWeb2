@@ -16,6 +16,7 @@ def search():
     res = []
     if srch:
         res = search_word(srch, limit)
+    print([r['url'] for r in res])
     return render_template("search.html", res=res)
 
 if __name__ == "__main__":

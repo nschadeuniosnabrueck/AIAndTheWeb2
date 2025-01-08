@@ -19,7 +19,8 @@ def extract(bs: BeautifulSoup, extract_url: str):
 
 def main():
     prefix = 'https://docs.python.org/3/'
-    agenda = [prefix]
+    start = 'index.html'
+    agenda = [prefix + start]
     already_seen = []
     sites_crawled = 0
 

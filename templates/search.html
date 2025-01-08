@@ -17,6 +17,9 @@
 <h1>Results</h1>
 <table>
     <tbody>
+    {% if not res%}
+           <h2>no results</h2>
+    {% else %}
         {% for element in res %}
         <tr>
             <td>
@@ -29,6 +32,7 @@
             </td>
         </tr>
         {% endfor %}
+    {% endif %}
     </tbody>
 </table>
 </body>

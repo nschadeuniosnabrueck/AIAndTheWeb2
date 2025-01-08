@@ -29,7 +29,7 @@ def add_doc(data):
             i = writer.delete_by_term('url', data["url"])
         writer.add_document(title=data["title"], content=data["content"], url=data["url"])
     finally:
-        log(f'Exception when writing to index. Ignoring url {data['url']}', True)
+        log(f"Exception when writing to index. Ignoring url {data['url']}", True)
         # always close writer, even when an exception occurs
         writer.commit()
 
@@ -48,6 +48,6 @@ def search_word(words, limit):
         print(limit)
         res = searcher.search(q, limit = limit)
         # res contains Hits
-        for hit in res:
+        for hit in res:#
             hit_list.append({"title": hit["title"], "url": hit["url"], "content":hit["content"]})
     return hit_list
