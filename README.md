@@ -1,5 +1,3 @@
 - credits page
-- wenn keine ergebnisse
-- fehlerbehandlung und log datei?
 - anzahl an treffern?
 - results page suchleiste

@@ -42,6 +42,6 @@ def search_word(words, limit=10):
     with ind.searcher() as searcher:
         res = searcher.search(q, limit = limit)
         # res contains Hits
-        for hit in res:
+        for hit in res:#
             hit_list.append({"title": hit["title"], "url": hit["url"], "content":hit["content"]})
     return hit_list

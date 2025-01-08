@@ -35,4 +35,12 @@ iframe{
   margin: 20px 0; /* Abstand oben und unten */
   transition: transform 0.3s ease; /* Sanfte Übergangseffekte beim Hover */
 }
+h2
+{
+  font-family: 'Courier', sans-serif; /* Schriftart */
+  font-weight: bold; /* Fett */
+  font-size: 36px; /* Schriftgröße */
+  color: #1a0dab; /* Farbe */
+  margin-bottom: 20px; /* Abstand nach unten */
+  text-transform: uppercase; /* Großbuchstaben */
 }
