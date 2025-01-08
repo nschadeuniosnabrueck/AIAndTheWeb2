@@ -1,6 +1,7 @@
 from whoosh.qparser import QueryParser
 import os
 import whoosh.index as index
+from weblogger import log
 
 from whoosh.fields import Schema, TEXT, ID
 
@@ -22,15 +23,14 @@ def add_doc(data):
         # Example 1: Iterating through all documents
         for doc in searcher.documents():
             if data["url"] == doc["url"]:
-                print(data["url"], ' ', doc["url"])
                 to_update = True
     writer = ind.writer()
     try:
         if to_update:
             i = writer.delete_by_term('url', data["url"])
-            print(i)
         writer.add_document(title=data["title"], content=data["content"], url=data["url"])
     finally:
+        log(f'Exception when writing to index. Ignoring url {data['url']}', True)
         # always close writer, even when an exception occurs
         writer.commit()
 
@@ -44,6 +44,5 @@ def search_word(words):
         res = searcher.search(q)
         # res contains Hits
         for hit in res:
-            print(hit)
             hit_list.append({"title": hit["title"], "url": hit["url"], "content":hit["content"]})
     return hit_list
