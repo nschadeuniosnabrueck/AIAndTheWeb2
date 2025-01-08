@@ -34,12 +34,18 @@ def add_doc(data):
         writer.commit()
 
 
-def search_word(words, limit=10):
+def search_word(words, limit):
+    if limit.isdigit():
+        limit = int(limit)
+        if limit == 0:
+            limit = 10
+    else: limit = 10
     ind = index.open_dir("indexdir")
     qp = QueryParser("content", schema=ind.schema)
     q = qp.parse(words.encode("utf-8"))
     hit_list = []
     with ind.searcher() as searcher:
+        print(limit)
         res = searcher.search(q, limit = limit)
         # res contains Hits
         for hit in res:
