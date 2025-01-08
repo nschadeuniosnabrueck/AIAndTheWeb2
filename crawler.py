@@ -41,6 +41,8 @@ while agenda:
         all_links = soup.find_all('a')
         only_same_page_links = []
         for link in all_links:
+            if '#' in link:
+                link = link.split('#')[0]
             if not link.has_attr('href'):
                 print("no href")
                 continue
