@@ -1,15 +1,30 @@
 /* Displax Flex */
 
+title{
+      font-family: 'Courier New', sans-serif; /* Schriftart */
+  font-weight: bold; /* Fett */
+  font-size: 36px; /* Schriftgröße */
+  color: #B8860B; /* Farbe */
+  text-align: center; /* Zentrieren */
+  margin-bottom: 20px; /* Abstand nach unten */
+  text-transform: uppercase; /* Großbuchstaben */
+}
 body {
     background-color: whitesmoke;
     font-family: Arial, sans-serif;
 }
+form {
+    display: flex;
+    justify-content: center; /* Zentriert die Suchbox und den Button */
+    align-items: center;
+    gap: 10px; /* Abstand zwischen Suchbox und Button */
+}
 
 h1 {
-  font-family: 'Courier', sans-serif; /* Schriftart */
+  font-family: 'Courier New', sans-serif; /* Schriftart */
   font-weight: bold; /* Fett */
   font-size: 36px; /* Schriftgröße */
-  color: #1a0dab; /* Farbe */
+  color: #B8860B; /* Farbe */
   text-align: center; /* Zentrieren */
   margin-bottom: 20px; /* Abstand nach unten */
   text-transform: uppercase; /* Großbuchstaben */
@@ -19,14 +34,14 @@ a {
   font-family: 'Arial', sans-serif; /* Schriftart */
   font-weight: bold; /* Fett */
   font-size: 20px; /* Größer */
-  color: #1a0dab; /* Link-Farbe */
+  color: #000000; /* Link-Farbe */
   text-decoration: none; /* Entfernt die Unterstreichung */
   transition: color 0.3s ease; /* Sanfter Übergang der Farbe beim Hover */
 }
 
 iframe{
-   width: 200%; /* Breite auf 100% der Elternbreite setzen */
-  height: 250px; /* Festgelegte Höhe für das iframe */
+width:926px;
+  height: 472px; /* Festgelegte Höhe für das iframe */
   border: none; /* Entfernt die Standard-Randlinien */
   border-radius: 10px; /* Abgerundete Ecken */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten für einen 3D-Effekt */
@@ -39,8 +54,9 @@ h2
 {
   font-family: 'Courier', sans-serif; /* Schriftart */
   font-weight: bold; /* Fett */
-  font-size: 36px; /* Schriftgröße */
-  color: #1a0dab; /* Farbe */
+  font-size: 22px; /* Schriftgröße */
+  color: #d90c0c; /* Farbe */
   margin-bottom: 20px; /* Abstand nach unten */
   text-transform: uppercase; /* Großbuchstaben */
 }
+
