@@ -13,10 +13,9 @@ if not os.path.exists("indexdir"):
     custom_analyzer = RegexTokenizer() | LowercaseFilter()
     schema = Schema(title=TEXT(stored=True, analyzer=custom_analyzer),
                     content=TEXT(stored=True, analyzer=custom_analyzer),
-                    url=ID(stored=True)) # we dont allow duplicates, so the url works as a ID
+                    url=ID(stored=True)) # we don't allow duplicates, so the url works as an ID
     os.mkdir("indexdir")
     ix = index.create_in("indexdir", schema)  #creates the index
-
 
 def add_doc(data):
     # Create an index in the directory indexdir (the directory must already exist!)
@@ -39,13 +38,13 @@ def add_doc(data):
         writer.commit()
 
 
-def search_word(words):
+def search_word(words, limit=10):
     ind = index.open_dir("indexdir")
     qp = QueryParser("content", schema=ind.schema)
     q = qp.parse(words.encode("utf-8"))
     hit_list = []
     with ind.searcher() as searcher:
-        res = searcher.search(q)
+        res = searcher.search(q, limit = limit)
         # res contains Hits
         for hit in res:
             print(hit)
