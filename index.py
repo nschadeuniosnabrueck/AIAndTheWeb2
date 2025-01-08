@@ -29,7 +29,7 @@ def add_doc(data):
             i = writer.delete_by_term('url', data["url"])
         writer.add_document(title=data["title"], content=data["content"], url=data["url"])
     finally:
-        log(f'Exception when writing to index. Ignoring url {data['url']}', True)
+        log(f"Exception when writing to index. Ignoring url {data['url']}", True)
         # always close writer, even when an exception occurs
         writer.commit()
 
