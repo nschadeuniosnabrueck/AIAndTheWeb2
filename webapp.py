@@ -1,4 +1,7 @@
-from flask import Flask, render_template, request
+import os
+
+from flask import Flask, render_template, request, send_from_directory
+
 from index import search_word
 
 webapp = Flask(__name__)
@@ -6,7 +9,7 @@ webapp = Flask(__name__)
 
 @webapp.route("/")
 def landing_page():
-    return render_template("lp.html")
+    return render_template("landing.html")
 
 
 @webapp.route("/search")
@@ -16,8 +19,14 @@ def search():
     res = []
     if srch:
         res = search_word(srch, limit)
-    print([r['url'] for r in res])
     return render_template("search.html", res=res)
+
+
+@webapp.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(webapp.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 if __name__ == "__main__":
     webapp.run(debug=True)

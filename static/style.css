@@ -1,62 +1,53 @@
-/* Displax Flex */
-
-title{
-      font-family: 'Courier New', sans-serif; /* Schriftart */
-  font-weight: bold; /* Fett */
-  font-size: 36px; /* Schriftgröße */
-  color: #B8860B; /* Farbe */
-  text-align: center; /* Zentrieren */
-  margin-bottom: 20px; /* Abstand nach unten */
-  text-transform: uppercase; /* Großbuchstaben */
-}
 body {
     background-color: whitesmoke;
     font-family: Arial, sans-serif;
 }
-form {
-    display: flex;
-    justify-content: center; /* Zentriert die Suchbox und den Button */
-    align-items: center;
-    gap: 10px; /* Abstand zwischen Suchbox und Button */
-}
 
 h1 {
-  font-family: 'Courier New', sans-serif; /* Schriftart */
-  font-weight: bold; /* Fett */
-  font-size: 36px; /* Schriftgröße */
-  color: #B8860B; /* Farbe */
-  text-align: center; /* Zentrieren */
-  margin-bottom: 20px; /* Abstand nach unten */
-  text-transform: uppercase; /* Großbuchstaben */
+    font-size: 36px;
+    color: #B8860B;
+    text-align: center;
+}
+
+h1, h2 {
+    font-family: 'Courier New', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 a {
-  font-family: 'Arial', sans-serif; /* Schriftart */
-  font-weight: bold; /* Fett */
-  font-size: 20px; /* Größer */
-  color: #000000; /* Link-Farbe */
-  text-decoration: none; /* Entfernt die Unterstreichung */
-  transition: color 0.3s ease; /* Sanfter Übergang der Farbe beim Hover */
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-iframe{
-width:926px;
-  height: 472px; /* Festgelegte Höhe für das iframe */
-  border: none; /* Entfernt die Standard-Randlinien */
-  border-radius: 10px; /* Abgerundete Ecken */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten für einen 3D-Effekt */
-  background-color: #f0f0f0; /* Hintergrundfarbe */
-  overflow: hidden; /* Verhindert Scrollbars, falls sie nicht notwendig sind */
-  margin: 20px 0; /* Abstand oben und unten */
-  transition: transform 0.3s ease; /* Sanfte Übergangseffekte beim Hover */
-}
-h2
-{
-  font-family: 'Courier', sans-serif; /* Schriftart */
-  font-weight: bold; /* Fett */
-  font-size: 22px; /* Schriftgröße */
-  color: #d90c0c; /* Farbe */
-  margin-bottom: 20px; /* Abstand nach unten */
-  text-transform: uppercase; /* Großbuchstaben */
+iframe {
+    width: 100%;
+    height: 40vh;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
 }
 
+.result-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.no-res {
+    font-size: 22px;
+    color: #d90c0c;
+}

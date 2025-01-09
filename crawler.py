@@ -1,8 +1,15 @@
+import logging
+
 import requests
 from bs4 import BeautifulSoup
-from weblogger import log
 
 from index import add_doc
+
+logging.basicConfig(filename="log.txt",
+                    filemode='a',
+                    format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                    datefmt='%H:%M:%S',
+                    level=logging.INFO)
 
 
 def extract(bs: BeautifulSoup, extract_url: str):
@@ -54,12 +61,11 @@ def main():
                     if '#' in new_url:
                         new_url = new_url.split('#')[0]
                     if new_url not in already_seen and new_url not in agenda:
-                        print(new_url)
                         agenda.append(new_url)
-        # we catch any exception, so the crawler doesnt abort. we save the url for troubleshooting later
-        except:
-            log(f'Exception while fetching {url}', True)
-    log(f'{sites_crawled} sites crawled')
+        # we catch any exception, so the crawler doesnt abort. we save the exception for troubleshooting later
+        except Exception as e:
+            logging.error(e)
+    logging.info(f'{sites_crawled} sites crawled')
 
 
 if __name__ == '__main__':

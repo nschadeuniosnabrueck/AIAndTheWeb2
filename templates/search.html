@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Results</title>
+    <title>PySearch - Results</title>
     <link rel="stylesheet" href="static/style.css">
 </head>
 
 <body>
-    <h1>PySearch</h1>
-    <!-- redirect to search function when enter pressed in input -->
-    <form action="search" method="get">
-        <input type="search" name="searchBox" placeholder="Type here to search">
-        <input type="search" name="numberBox" placeholder="Number of results">
-        <button type="submit" >Submit</button> <!-- Hidden button to enable Enter submission -->
-    </form>
+<h1>PySearch</h1>
+<form action="search" method="get">
+    <input type="search" name="searchBox" placeholder="Type here to search">
+    <input type="search" name="numberBox" placeholder="Number of results">
+    <button type="submit">Submit</button>
+</form>
 
 <h1>Results</h1>
 <table>
     <tbody>
-    {% if not res%}
-           <h2>no results</h2>
+    {% if not res %}
+        <h2 class="no-res">no results</h2>
     {% else %}
         {% for element in res %}
-        <tr>
-            <td>
+            <div class="result-wrapper">
                 <a href="{{ element['url'] }}" target="_blank">
                     {{ element["title"] }}
                 </a>
                 <br>
 
                 <iframe src="{{ element['url'] }}"></iframe>
-            </td>
-        </tr>
+            </div>
+
         {% endfor %}
     {% endif %}
     </tbody>
