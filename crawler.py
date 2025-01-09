@@ -31,6 +31,7 @@ def main():
     already_seen = []
     sites_crawled = 0
 
+    logging.info("Starting crawler at " + prefix + start)
     while agenda:
         url = agenda.pop()
         already_seen.append(url)
