@@ -12,12 +12,12 @@ logging.basicConfig(filename="log.txt",
                     level=logging.INFO)
 
 
-def extract(bs: BeautifulSoup, extract_url: str):
+def extract(bs: BeautifulSoup, extract_url: str) -> dict:
     """
     Used to extract text from a BeautifulSoup object
     :param extract_url: url extracted from
     :param bs: BeautifulSoup object
-    :return: dict containing title and content
+    :return: dict containing title, content and url
     """
     title = str(bs.title.string) if bs.title else "No title"  # Falls kein Titel vorhanden
     content = bs.get_text()
@@ -58,6 +58,7 @@ def main():
                         only_same_page_links.append(link)
                 for link in only_same_page_links:
                     new_url = prefix + link['href']
+                    # we dont want to crawl captions of a page, because that would lead to duplicates
                     if '#' in new_url:
                         new_url = new_url.split('#')[0]
                     if new_url not in already_seen and new_url not in agenda:

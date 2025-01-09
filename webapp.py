@@ -24,8 +24,7 @@ def search():
 
 @webapp.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(webapp.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(webapp.root_path, 'static'), 'favicon.ico')
 
 
 if __name__ == "__main__":
