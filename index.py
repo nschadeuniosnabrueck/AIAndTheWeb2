@@ -27,23 +27,24 @@ def add_doc(data: dict) -> None:
     """
     # open index from the directory INDEX_FOLDER
     ind = index.open_dir(INDEX_FOLDER)
-    to_update = False
+    update_url = ""
     # check if we already saved the url and update the index entry if we did
     with ind.searcher() as searcher:
         for doc in searcher.documents():
             # explicit if/elif for readability
             if data["url"] == doc["url"]:
-                to_update = True
+                update_url = doc["url"]
             # different urls can redirect to the same page,
             # eg https://docs.python.org/3/../index.html and https://docs.python.org/3/index.html
             elif data["title"] == doc["title"] and data["url"].replace("../", "") == doc["url"].replace("../", ""):
-                to_update = True
+                update_url = doc["url"]
+
     writer = ind.writer()
     try:
-        if to_update:
+        if update_url != "":
             # using url as ID
-            writer.delete_by_term('url', data["url"])
-        writer.add_document(title=data["title"], content=data["content"], url=data["url"])
+            writer.delete_by_term('url', update_url)
+        writer.add_document(title=data["title"], content=data["content"], url=update_url)
     except Exception as e:
         logging.error(e, exc_info=True)
     finally:
