@@ -19,6 +19,8 @@ def search():
     res = []
     if srch:
         res = search_word(srch, limit)
+    for r in res:
+        print(r["url"])
     return render_template("search.html", res=res)
 
 

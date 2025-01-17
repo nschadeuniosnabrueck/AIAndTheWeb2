@@ -44,6 +44,8 @@ def add_doc(data: dict) -> None:
         if update_url != "":
             # using url as ID
             writer.delete_by_term('url', update_url)
+        else:
+            update_url = data["url"]
         writer.add_document(title=data["title"], content=data["content"], url=update_url)
     except Exception as e:
         logging.error(e, exc_info=True)
