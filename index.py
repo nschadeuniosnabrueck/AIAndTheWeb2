@@ -31,7 +31,12 @@ def add_doc(data: dict) -> None:
     # check if we already saved the url and update the index entry if we did
     with ind.searcher() as searcher:
         for doc in searcher.documents():
+            # explicit if/elif for readability
             if data["url"] == doc["url"]:
+                to_update = True
+            # different urls can redirect to the same page,
+            # eg https://docs.python.org/3/../index.html and https://docs.python.org/3/index.html
+            elif data["title"] == doc["title"] and data["url"].replace("../", "") == doc["url"].replace("../", ""):
                 to_update = True
     writer = ind.writer()
     try:

@@ -28,7 +28,8 @@ def main():
     prefix = 'https://docs.python.org/3/'
     start = 'index.html'
     agenda = [prefix + start]
-    already_seen = []
+    # same as starting point
+    already_seen = ["https://docs.python.org/3/"]
     sites_crawled = 0
 
     logging.info("Starting crawler at " + prefix + start)
@@ -46,6 +47,8 @@ def main():
                 data = extract(soup, url)
                 add_doc(data)
                 sites_crawled += 1
+                if sites_crawled % 50 == 0:
+                    logging.info(f"{sites_crawled} sites crawled, going on...")
                 # a: html element link
                 all_links = soup.find_all('a')
                 only_same_page_links = []
@@ -67,7 +70,7 @@ def main():
         # we catch any exception, so the crawler doesnt abort. we save the exception for troubleshooting later
         except Exception as e:
             logging.error(e)
-    logging.info(f'{sites_crawled} sites crawled')
+    logging.info(f'{sites_crawled} sites crawled, finished.')
 
 
 if __name__ == '__main__':
