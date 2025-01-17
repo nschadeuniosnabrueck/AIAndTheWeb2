@@ -22,10 +22,5 @@ def search():
     return render_template("search.html", res=res)
 
 
-@webapp.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(webapp.root_path, 'static'), 'favicon.ico')
-
-
 if __name__ == "__main__":
     webapp.run(debug=True)
